@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0f7fa; /* Light blue background */
+    overflow: hidden;
+    perspective: 800px; /* Adds perspective to the scene */
+}
+
+.container {
+    position: relative;
+    width: 200px;
+    height: 400px;
+}
+
+.soil {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #8d6e63; /* Soil color */
+    border-radius: 0 0 20px 20px; /* Rounded top edges */
+}
+
+.stem {
+    position: absolute;
+    bottom: 50px; /* Starts above the soil */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 0; /* Start height at 0 */
+    background-color: #4caf50; /* Green color for stem */
+    animation: growStem 4s forwards;
+}
+
+.flower {
+    position: absolute;
+    bottom: 250px; /* Position the flower above the stem end */
+    left: 50%;
+    transform: translateX(-50%) scale(0); /* Center horizontally */
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    animation: bloomFlower 4s forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -50px; /* Adjust to ensure flower overlaps stem */
+}
+
+.petal {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #FF8C9E; /* Light pink color for petals */
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.petal1 {
+    top: 50;
+    bottom: 50%;
+    left: 0%;
+    transform: translateX(-50%) rotate(0deg) translateY(-25px); /* Adjust position */
+}
+
+.petal2 {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(90deg) translateX(-25px); /* Adjust position */
+}
+
+.petal3 {
+    top: 0%;
+    right: 0;
+    transform: translateY(-50%) rotate(180deg) translateX(25px); /* Adjust position */
+}
+
+.petal4 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(270deg) translateY(25px); /* Adjust position */
+}
+
+.center {
+    width: 40px;
+    height: 40px;
+    background-color: #FF4E88; /* Vibrant raspberry color for the center */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes growStem {
+    from {
+        height: 0;
+    }
+    to {
+        height: 300px; /* Adjust height if needed */
+    }
+}
+
+@keyframes bloomFlower {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        width: 100px;
+        height: 100px;
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes petalBloom {
+    from {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.flower .petal {
+    animation: petalBloom 2s forwards;
+    animation-delay: 4s; /* Delay to start after stem growth */
+}
+
+.petal1 { animation-delay: 4s; }
+.petal2 { animation-delay: 4.5s; }
+.petal3 { animation-delay: 5s; }
+.petal4 { animation-delay: 5.5s; }
